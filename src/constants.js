@@ -1,0 +1,10 @@
+
+const ADD_TO_LIST = 'ADD_TO_LIST';
+const ADD_TO_CART = 'ADD_TO_CART';
+const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
+
+export {
+  ADD_TO_LIST,
+  ADD_TO_CART,
+  ADD_TO_FAVORITES,
+};
