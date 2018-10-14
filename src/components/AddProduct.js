@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addProductToList } from '../actions';
-//import ProductButton from './ProductButton';
 
 class AddProduct extends Component {
   constructor(props) {
@@ -34,7 +33,10 @@ class AddProduct extends Component {
             })}
           }
         />
-        <button type="submit" className="product__form-button">
+        <button 
+          type="submit" 
+          className="product__form-button"
+        >
           Añadir Producto
         </button>
       </form>

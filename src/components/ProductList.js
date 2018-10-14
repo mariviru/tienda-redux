@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AddProduct from './AddProduct';
+import { addProductToCart } from '../actions';
 
 class ProductList extends Component {
 
@@ -13,7 +14,11 @@ class ProductList extends Component {
         {this.props.productList.map((product, index) => {
           return (
             <li key={index} className="product__element">{product}
-              <button type="submit">$</button>
+              <button 
+                onClick={this.props.addProductToCart}
+              >
+                $
+              </button>
               <button type="submit">*</button>
             </li>
           )
@@ -33,6 +38,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
+    addProductToCart: () => dispatch(addProductToCart())
   }
 }
 
