@@ -8,11 +8,14 @@ class ProductList extends Component {
     console.log('productList', this.props)
     return ( 
       <section className="section__container section__product">
-        <h2>Catálogo</h2>
+        <h2 className="section__title">Catálogo</h2>
         <ul className="product__list">
         {this.props.productList.map((product, index) => {
           return (
-            <li key={index} className="product__element">{product}</li>
+            <li key={index} className="product__element">{product}
+              <button type="submit">$</button>
+              <button type="submit">*</button>
+            </li>
           )
         })}
         </ul>
