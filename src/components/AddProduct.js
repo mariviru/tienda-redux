@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addProductToList } from '../actions';
 //import ProductButton from './ProductButton';
 
 class AddProduct extends Component {
@@ -11,7 +13,7 @@ class AddProduct extends Component {
 
   Add(event){
     event.preventDefault();
-    this.props.addProduct(this.state);
+    this.props.addProductToList(this.state);
     this.setState({
       product: '',
     });
@@ -23,7 +25,15 @@ class AddProduct extends Component {
         onSubmit={this.Add.bind(this)} 
         className="product__form"
       >
-        <input type="text"/>
+        <input 
+          type="text" 
+          value={this.state.product}
+          onChange={(e) => 
+            {this.setState({
+              product: e.target.value
+            })}
+          }
+        />
         <button type="submit" className="product__form-button">
           Añadir Producto
         </button>
@@ -32,4 +42,18 @@ class AddProduct extends Component {
   }
 }
  
-export default AddProduct;
+function mapStateToProps (state) {
+  return {
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    addProductToList: (product) => dispatch(addProductToList(product))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddProduct)
