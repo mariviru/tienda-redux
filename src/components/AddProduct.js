@@ -30,6 +30,7 @@ class AddProduct extends Component {
         className="product__form"
       >
         <input 
+          className="product__form-input"
           type="text" 
           value={this.state.product}
           onChange={(e) => 

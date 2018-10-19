@@ -1,31 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteProducts } from '../actions';
+import { deleteProductsFromCart } from '../actions';
 
 class ShoppingCart extends Component {
 
-  // _delete(id){
-  //   this.props.deleteProducts({element: this.state.product, id: this.state.id});
-  //   let shop = this.props.cartList;
-  //   shop.map((item, index) => {
-  //     if(item.id === id) {
-  //       this.props.cartList.splice(index, 1)
-  //     }
-  //     return shop;
-  //   })
-  // }
+  _delete(id){
+    let shop = this.props.cartList;
+    shop.map((item, index) => {
+      if(item.id === id) {
+        shop.splice(index, 1)
+      }
+      return shop;
+    })
+    this.props.deleteProductsFromCart(this.props.cartList)
+  }
 
-  render() { 
-    console.log('props en shopping cart', this.props)
+  render() {
     return ( 
       <section className="section__container">
         <h2 className="section__title">Carrito</h2>
         <ul className="product__list">
         {this.props.cartList.map((product, index) => {
           return (
-            <li key={index} className="product__element">{product.element}
+            <li key={index} className="product__element">
+              <p className="element-name">
+                {product.element}
+              </p>
                <button 
-                // onClick={() => {this._delete(product.id).bind(this)}}
+                className="element-button-delete"
+                onClick={this._delete.bind(this, product.id)}
               >
                 X
               </button>
@@ -47,7 +50,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    deleteProducts: (product) => dispatch(deleteProducts(product))
+    deleteProductsFromCart: (product) => dispatch(deleteProductsFromCart(product))
   }
 }
 

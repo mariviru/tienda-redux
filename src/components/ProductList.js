@@ -13,16 +13,21 @@ class ProductList extends Component {
         <ul className="product__list">
         {this.props.productList.map((product, index) => {
           return (
-            <li key={index} className="product__element">{product.element}
-              <button   
+            <li key={index} className="product__element">
+              <p className="element-name">
+                {product.element}
+              </p>
+              <button 
+                className="element-button-buy" 
                 onClick={() => {this.props.addProductToCart(product)}}
               >
                 $
               </button>
               <button 
+                className="element-button-fav" 
                 onClick={() => {this.props.addProductToFavorites(product)}}
               >
-                *
+                ❤
               </button>
             </li>
           )

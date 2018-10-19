@@ -1,4 +1,4 @@
-import { ADD_TO_FAVORITES, DELETE } from '../constants';
+import { ADD_TO_FAVORITES, DELETE_FROM_FAVORITES } from '../constants';
 
 const initialState = {
   favoriteList: [],
@@ -10,9 +10,9 @@ export default function contentReducer(state = initialState, action) {
       return Object.assign({}, state, {
         favoriteList: state.favoriteList.concat([action.product])
       });
-      case DELETE:
+      case DELETE_FROM_FAVORITES:
       return Object.assign({}, state, {
-        favoriteList: state.favoriteList.splice([action.product])
+        favoriteList: [].concat(action.product)
       });
       default:
       return state;

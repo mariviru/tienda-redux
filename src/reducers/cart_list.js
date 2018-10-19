@@ -1,4 +1,4 @@
-import { ADD_TO_CART, DELETE } from '../constants';
+import { ADD_TO_CART, DELETE_FROM_CART } from '../constants';
 
 const initialState = {
   cartList: [],
@@ -10,10 +10,9 @@ export default function contentReducer(state = initialState, action) {
       return Object.assign({}, state, {
         cartList: state.cartList.concat([action.product])
       });
-      case DELETE:
-      console.log('cartList en cart_list', state.cartList)
+      case DELETE_FROM_CART:
       return Object.assign({}, state, {
-        cartList: state.cartList.concat([action.product])
+        cartList: [].concat(action.product)
       });
       default:
       return state;

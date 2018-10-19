@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteProducts } from '../actions';
+import { deleteProductsFromFavorites } from '../actions';
 
 class Favorites extends Component {
  
-  // _delete(id){
-  //   this.props.deleteProducts(this.state);
-  //   let fav = this.props.favoriteList.map((item, index) => {
-  //     if(item.id === id) {
-  //       this.props.favoriteList.splice(index, 1)
-  //     }
-  //     return fav;
-  //   })
-  // }
+  _delete(id){
+    let fav = this.props.favoriteList;
+    fav.map((item, index) => {
+      if(item.id === id) {
+        fav.splice(index, 1)
+      }
+      return fav;
+    })
+    this.props.deleteProductsFromFavorites(this.props.favoriteList)
+  }
 
   render() { 
     return ( 
@@ -21,9 +22,13 @@ class Favorites extends Component {
         <ul className="product__list">
         {this.props.favoriteList.map((product, index) => {
           return (
-            <li key={index} className="product__element">{product.element}
+            <li key={index} className="product__element">
+              <p className="element-name">
+                {product.element}
+              </p>
               <button 
-                // onClick={() => {this.props._delete(product.id)}}
+                className="element-button-delete"
+                onClick={this._delete.bind(this, product.id)}
               >
                 X
               </button>
@@ -45,7 +50,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    deleteProducts: (product) => dispatch(deleteProducts(product))
+    deleteProductsFromFavorites: (product) => dispatch(deleteProductsFromFavorites(product))
   }
 }
 
