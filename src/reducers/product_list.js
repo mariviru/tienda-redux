@@ -1,8 +1,10 @@
-import { ADD_TO_LIST } from '../constants';
+import {
+  ADD_TO_LIST,
+  DELETE_FROM_LIST,
+} from '../constants';
 
 const initialState = {
-  productList: [
-    {
+  productList: [{
       element: 'patatas',
       id: 0,
     },
@@ -27,7 +29,11 @@ export default function contentReducer(state = initialState, action) {
       return Object.assign({}, state, {
         productList: state.productList.concat([action.product])
       });
-      default:
+    case DELETE_FROM_LIST:
+      return Object.assign({}, state, {
+        productList: [].concat(action.product)
+      });
+    default:
       return state;
   }
 }

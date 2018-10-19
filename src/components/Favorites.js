@@ -11,11 +11,12 @@ class Favorites extends Component {
         fav.splice(index, 1)
       }
       return fav;
-    })
-    this.props.deleteProductsFromFavorites(this.props.favoriteList)
+    });
+    this.props.deleteProductsFromFavorites(fav)
   }
 
   render() { 
+    console.log('favoritos', this.props.favoriteList)
     return ( 
       <section className="section__container">
         <h2 className="section__title">Favoritos</h2>

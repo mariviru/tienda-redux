@@ -12,7 +12,7 @@ class ShoppingCart extends Component {
       }
       return shop;
     })
-    this.props.deleteProductsFromCart(this.props.cartList)
+    this.props.deleteProductsFromCart(shop)
   }
 
   render() {

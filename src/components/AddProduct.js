@@ -7,17 +7,17 @@ class AddProduct extends Component {
     super(props);
     this.state = 
       {
-        product: '',
+        element: '',
         id: '',
       }
   } 
 
   _add(event){
     event.preventDefault();
-    this.props.addProductToList({element: this.state.product, id: this.state.id});
+    this.props.addProductToList({element: this.state.element, id: this.state.id});
     this.setState(
       {
-        product: '',
+        element: '',
         id: '',
       }
     );
@@ -32,11 +32,11 @@ class AddProduct extends Component {
         <input 
           className="product__form-input"
           type="text" 
-          value={this.state.product}
+          value={this.state.element}
           onChange={(e) => 
             {this.setState(
               {
-                product: e.target.value,
+                element: e.target.value,
                 id: this.props.productList.length,
               }
             )}

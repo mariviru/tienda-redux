@@ -1,4 +1,7 @@
-import { ADD_TO_FAVORITES, DELETE_FROM_FAVORITES } from '../constants';
+import { 
+  ADD_TO_FAVORITES, 
+  DELETE_FROM_FAVORITES, 
+} from '../constants';
 
 const initialState = {
   favoriteList: [],
