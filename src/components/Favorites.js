@@ -4,19 +4,13 @@ import { deleteProductsFromFavorites } from '../actions';
 
 class Favorites extends Component {
  
-  _delete(id){
+  _delete(index){
     let fav = this.props.favoriteList;
-    fav.map((item, index) => {
-      if(item.id === id) {
-        fav.splice(index, 1)
-      }
-      return fav;
-    });
+    fav.splice(index, 1)
     this.props.deleteProductsFromFavorites(fav)
   }
 
-  render() { 
-    console.log('favoritos', this.props.favoriteList)
+  render() {
     return ( 
       <section className="section__container">
         <h2 className="section__title">Favoritos</h2>
@@ -29,7 +23,7 @@ class Favorites extends Component {
               </p>
               <button 
                 className="element-button-delete"
-                onClick={this._delete.bind(this, product.id)}
+                onClick={this._delete.bind(this, index)}
               >
                 X
               </button>

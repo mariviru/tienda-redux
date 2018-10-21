@@ -4,14 +4,9 @@ import { deleteProductsFromCart } from '../actions';
 
 class ShoppingCart extends Component {
 
-  _delete(id){
+  _delete(index){
     let shop = this.props.cartList;
-    shop.map((item, index) => {
-      if(item.id === id) {
-        shop.splice(index, 1)
-      }
-      return shop;
-    })
+    shop.splice(index, 1)
     this.props.deleteProductsFromCart(shop)
   }
 
@@ -28,7 +23,7 @@ class ShoppingCart extends Component {
               </p>
                <button 
                 className="element-button-delete"
-                onClick={this._delete.bind(this, product.id)}
+                onClick={this._delete.bind(this, index)}
               >
                 X
               </button>

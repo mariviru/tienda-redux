@@ -11,35 +11,26 @@ import {
 
 class ProductList extends Component {
 
-  _delete(id){
+  _delete(index){
     let list = this.props.productList;
-    let fav = this.props.favoriteList;
     let shop = this.props.cartList;
+    let fav = this.props.favoriteList;
+    let productId = list[index].id;
 
-    list.map((item, index) => {
-      if(item.id === id) {
-        list.splice(index, 1)
-      }
-      return list;
-    });
+    list.splice(index, 1);
 
-    fav.map((item, index) => {
-      if(item.id === id) {
-        fav.splice(index, 1)
-      }
-      return fav;
-    });
+    shop = shop.filter((item) => {
+      return item.id !== productId;
+    })
 
-    shop.map((item, index) => {
-      if(item.id === id) {
-        shop.splice(index, 1)
-      }
-      return shop;
-    });
+    fav = fav.filter((item) => {
+      return item.id !== productId;
+    })
+
 
     this.props.deleteProductsFromList(list)
-    this.props.deleteProductsFromFavorites(fav)
     this.props.deleteProductsFromCart(shop)
+    this.props.deleteProductsFromFavorites(fav)
   }
 
   render() { 
@@ -68,7 +59,7 @@ class ProductList extends Component {
               </button>
               <button 
                 className="element-button-delete"
-                onClick={this._delete.bind(this, product.id)}
+                onClick={this._delete.bind(this, index)}
               >
                 X
               </button>
