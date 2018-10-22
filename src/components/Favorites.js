@@ -21,6 +21,7 @@ class Favorites extends Component {
               <p className="element-name">
                 {product.element}
               </p>
+              <span>{index}</span>
               <button 
                 className="element-button-delete"
                 onClick={this._delete.bind(this, index)}

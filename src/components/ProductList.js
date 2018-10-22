@@ -27,7 +27,6 @@ class ProductList extends Component {
       return item.id !== productId;
     })
 
-
     this.props.deleteProductsFromList(list)
     this.props.deleteProductsFromCart(shop)
     this.props.deleteProductsFromFavorites(fav)
@@ -35,6 +34,7 @@ class ProductList extends Component {
 
   render() { 
     console.log('props en ProductList', this.props)
+
     return ( 
       <section className="section__container section__product">
         <h2 className="section__title">Catálogo</h2>
