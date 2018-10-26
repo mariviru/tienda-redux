@@ -10,17 +10,40 @@ class Favorites extends Component {
     this.props.deleteProductsFromFavorites(fav)
   }
 
+  _unique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  }
+
+  _find_product_by_id = (id) => {
+    let fav = this.props.favoriteList;
+    let elementWithId = fav.find(function(element) {
+    return element.id === id;
+    });
+    return elementWithId;
+  }
+
   render() {
+    let fav = this.props.favoriteList;
+
+    const favId = fav.map((ident)=>{
+      return ident.id
+    });
+
+    const favIdUnique = favId.filter(this._unique.bind(this));
+
     return ( 
       <section className="section__container">
         <h2 className="section__title">Favoritos</h2>
         <ul className="product__list">
-        {this.props.favoriteList.map((product, index) => {
+        {favIdUnique.map((id, index) => {
           return (
             <li key={index} className="product__element">
               <p className="element-name">
-                {product.element}
+              {this._find_product_by_id.bind(this)(id).element}
               </p>
+              <span>
+                {favId.filter(elem => {return (elem === id)}).length}
+              </span>
               <button 
                 className="element-button-delete"
                 onClick={this._delete.bind(this, index)}
