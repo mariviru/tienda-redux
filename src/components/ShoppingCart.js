@@ -10,26 +10,40 @@ class ShoppingCart extends Component {
     this.props.deleteProductsFromCart(shop)
   }
 
-  render() {
+  _unique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  }
 
+  _find_product_by_id = (id) => {
     let shop = this.props.cartList;
-    const countProducts = shop.reduce((counter, item) => {counter[item.element] = (counter[item.element] || 0) + 1;
-        return counter;
-    },{})
-    console.log('count', Object.values(countProducts))
+    let elementWithId = shop.find(function(element) {
+    return element.id === id;
+    });
+    return elementWithId;
+  }
+
+  render() {
+    let shop = this.props.cartList;
+
+    const shopId = shop.map((ident)=>{
+      return ident.id
+    });
+
+    const shopIdUnique = shopId.filter(this._unique.bind(this));
 
     return ( 
       <section className="section__container">
         <h2 className="section__title">Carrito</h2>
         <ul className="product__list">
-        {this.props.cartList.map((product, index) => {
-          if(product.element === Object.keys(countProducts)[index]) {
+        {shopIdUnique.map((id, index) => {
             return (
               <li key={index} className="product__element">
                 <p className="element-name">
-                  {product.element}
+                  {this._find_product_by_id.bind(this)(id).element}
                 </p>
-                <span>{Object.values(countProducts)[index]}</span>
+                <span>
+                  {shopId.filter(elem => {return (elem === id)}).length}
+                </span>
                 <button 
                   className="element-button-delete"
                   onClick={this._delete.bind(this, index)}
@@ -37,28 +51,13 @@ class ShoppingCart extends Component {
                   X
                 </button>
               </li>
-            )
-          } else {
-            return (
-              <li key={index} className="product__element">
-                <p className="element-name">
-                  {product.element}
-                </p>
-                <span></span>
-                <button 
-                  className="element-button-delete"
-                  onClick={this._delete.bind(this, index)}
-                >
-                  X
-                </button>
-              </li>
-            )
-          }
-        })}
+            )}
+          )}
         </ul>
       </section>
      );
   }
+
 }
  
 function mapStateToProps (state) {
